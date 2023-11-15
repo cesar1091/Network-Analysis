@@ -19,9 +19,9 @@ def summary_graph(G):
     summary_graph['periphery'] = [int(x in periphery) for x in summary_graph.index]
     summary_graph['betweeness_centrality'] = nx.betweenness_centrality(G,normalized=True)
     summary_graph['closeness_centrality'] = nx.closeness_centrality(G)
-    #hubs, auth = nx.hits(G)
-    #summary_graph['hubs_values'] = hubs
-    #summary_graph['auth_values'] = auth
+    hubs, auth = nx.hits(G)
+    summary_graph['hubs_values'] = hubs
+    summary_graph['auth_values'] = auth
     summary_graph['avg_neighbor_degree'] = nx.average_neighbor_degree(G)
     return summary_graph
 
@@ -100,7 +100,7 @@ if on_filter:
     filter_attr = st.selectbox("SELECCIONE EL FILTRO:",["DEPARTAMENTO","TYPE","FLAG_AN"])
     attr = st.selectbox("SELECCIONA EL ATRIBUTO A CUMPLIR:",diccionario[filter_attr])
     print(diccionario[filter_attr])
-columns = ['in_degree','out_degree','in_degree_centrality','out_degree_centrality','betweeness_centrality','closeness_centrality','center_nodes','periphery','avg_neighbor_degree','TYPE','FLAG_LSB_NP','FLAG_AN','FLAG_EPIC007','FLAG_PEP','FLAG_ROS','DEPARTAMENTO','EDAD','MONTO_SALIDA','MONTO_ENTRADA']
+columns = ['in_degree','out_degree','hubs_values','auth_values','in_degree_centrality','out_degree_centrality','betweeness_centrality','closeness_centrality','center_nodes','periphery','avg_neighbor_degree','TYPE','FLAG_LSB_NP','FLAG_AN','FLAG_EPIC007','FLAG_PEP','FLAG_ROS','DEPARTAMENTO','EDAD','MONTO_SALIDA','MONTO_ENTRADA']
 if orientacion == 'SALIDA':
     ego_graph = nx.ego_graph(G,sospechoso,radius=int(deph),undirected=False)
     F = ego_graph.copy()
