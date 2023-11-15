@@ -121,7 +121,7 @@ if orientacion == 'SALIDA':
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes()),columns])
+        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
 
 elif orientacion == 'ENTRADA':
     ego_graph = nx.ego_graph(G.reverse(),sospechoso,radius=int(deph),undirected=False)
@@ -144,7 +144,7 @@ elif orientacion == 'ENTRADA':
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes()),columns])
+        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
 
 elif orientacion == 'AMBOS':
     ego_graph = nx.ego_graph(G.to_undirected(),sospechoso,radius=int(deph),undirected=True)
@@ -167,4 +167,4 @@ elif orientacion == 'AMBOS':
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes()),columns])
+        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
