@@ -19,9 +19,9 @@ def summary_graph(G):
     summary_graph['periphery'] = [int(x in periphery) for x in summary_graph.index]
     summary_graph['betweeness_centrality'] = nx.betweenness_centrality(G,normalized=True)
     summary_graph['closeness_centrality'] = nx.closeness_centrality(G)
-    hubs, auth = nx.hits(G)
-    summary_graph['hubs_values'] = hubs
-    summary_graph['auth_values'] = auth
+    #hubs, auth = nx.hits(G)
+    #summary_graph['hubs_values'] = hubs
+    #summary_graph['auth_values'] = auth
     summary_graph['avg_neighbor_degree'] = nx.average_neighbor_degree(G)
     return summary_graph
 
