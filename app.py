@@ -115,13 +115,14 @@ if orientacion == 'SALIDA':
     nt = net.Network(notebook=True,directed=True,width='800px', height='800px')
     nt.force_atlas_2based()
     nt.set_edge_smooth('dynamic')
+    index = list(F.nodes())
     nt.from_nx(F)
     nt.write_html('src/salida.html')
     HtmlFile = open('src/salida.html','r',encoding='utf-8')
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
+        st.dataframe(summary_concat.loc[index,columns])
 
 elif orientacion == 'ENTRADA':
     ego_graph = nx.ego_graph(G.reverse(),sospechoso,radius=int(deph),undirected=False)
@@ -138,13 +139,14 @@ elif orientacion == 'ENTRADA':
     nt = net.Network(notebook=True,directed=True,width='800px', height='800px')
     nt.force_atlas_2based()
     nt.set_edge_smooth('dynamic')
+    index = list(F.nodes())
     nt.from_nx(F)
     nt.write_html('src/entrada.html')
     HtmlFile = open('src/entrada.html','r',encoding='utf-8')
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
+        st.dataframe(summary_concat.loc[index,columns])
 
 elif orientacion == 'AMBOS':
     ego_graph = nx.ego_graph(G.to_undirected(),sospechoso,radius=int(deph),undirected=True)
@@ -161,10 +163,11 @@ elif orientacion == 'AMBOS':
     nt = net.Network(notebook=True,directed=True,width='800px', height='800px')
     nt.force_atlas_2based()
     nt.set_edge_smooth('dynamic')
+    index = list(F.nodes())
     nt.from_nx(F)
     nt.write_html('src/ambos.html')
     HtmlFile = open('src/ambos.html','r',encoding='utf-8')
     source_code = HtmlFile.read()
     st.components.v1.html(source_code,width=800,height=800,scrolling=False)
     with st.expander("Revisar resumen:"):
-        st.dataframe(summary_concat.loc[list(F.nodes())][columns])
+        st.dataframe(summary_concat.loc[index,columns])
